@@ -39,6 +39,14 @@ func (a *App) CreateRoutes() {
  routes.POST("/cat", middlewares.CheckAuth, catController.CreateCat)
  routes.GET("/cat", catController.GetCats)
 
+ // match
+ matchController := controllers.NewMatchController(a.DB)
+ routes.POST("/match", middlewares.CheckAuth, matchController.CreateMatch)
+ routes.GET("/match", middlewares.CheckAuth, matchController.GetMatch)
+ routes.DELETE("/match", middlewares.CheckAuth, matchController.DeleteMatch)
+ routes.PUT("/match/approve", middlewares.CheckAuth, matchController.ApproveMatch)
+ routes.PUT("/match/decline", middlewares.CheckAuth, matchController.RejectMatch)
+
  a.Routes = routes
 }
 
