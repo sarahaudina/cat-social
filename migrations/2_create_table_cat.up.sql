@@ -1,10 +1,8 @@
-CREATE TABLE cats(
-    cat_id serial primary key,
-    user_id serial,
-    name VARCHAR(255) NOT NULL,
-    race VARCHAR(255) NOT NULL,
-    age INTEGER NOT NULL,
-    CONSTRAINT fk_user
-      FOREIGN KEY(user_id) 
-        REFERENCES user(user_id)
+CREATE TABLE cats(  
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  gender VARCHAR(255) NOT NULL,
+  user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP NOT NULL DEFAULT now(),
+  updated_at TIMESTAMP NOT NULL DEFAULT now()
 );

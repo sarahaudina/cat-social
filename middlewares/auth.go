@@ -2,7 +2,6 @@ package middlewares
 
 import (
 	"fmt"
-	"psprint/cat/models"
 	"net/http"
 	"os"
 	"strings"
@@ -55,15 +54,21 @@ func CheckAuth(c *gin.Context) {
 		return
 	}
 
-	var user models.User
-	// initializers.DB.Where("ID=?", claims["id"]).Find(&user)
+	// todo: authentication should be done here, but rn dont know how to inject db here
+	// db := c.DB
+	// repo_user := repositories.NewUserRepository(db)
 
-	if user.ID == 0 {
-		c.AbortWithStatus(http.StatusUnauthorized)
-		return
-	}
+	// userFound := repo_user.FindUser(claims["id"])
 
-	c.Set("currentUser", user)
+
+	// if userFound == nil {
+	// 	c.AbortWithStatus(http.StatusUnauthorized)
+	// 	return
+	// }
+
+	userId := claims["id"]
+
+	c.Set("userId", userId)
 
 	c.Next()
 

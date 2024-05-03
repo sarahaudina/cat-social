@@ -9,6 +9,7 @@ import (
  "github.com/gin-gonic/gin"
 
  "psprint/cat/controllers"
+ "psprint/cat/middlewares"
 )
 
 type App struct {
@@ -30,8 +31,13 @@ func (a *App) CreateRoutes() {
 
  // auth
  userController := controllers.NewUserController(a.DB)
- routes.POST("/user/signup", userController.CreateUser)
+ routes.POST("/user/register", userController.CreateUser)
  routes.POST("/user/login", userController.Login)
+
+ // cats
+ catController := controllers.NewCatController(a.DB)
+ routes.POST("/cat", middlewares.CheckAuth, catController.CreateCat)
+ routes.GET("/cat", catController.GetCats)
 
  a.Routes = routes
 }
