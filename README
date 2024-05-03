@@ -1,0 +1,21 @@
+A. How To
+1. Setup project following this https://go.dev/doc/tutorial/getting-started to init project, then this to structure the project https://medium.com/@ramadhansalmanalfarisi8/how-to-dockerize-your-api-with-go-postgresql-gin-docker-9a2b16548520
+
+2. Update docker-compose following this https://www.youtube.com/watch?v=6_CH8Gx414A because we want to run only postgres in docker container, while the api will be run in local env. Then run ```docker-compose up -d``` to start postgres in container in the background. 
+
+In this stage, a few things to pay attention to:
+- Bc the initial project was about to run migration using code, comment out all the auto migration codes.
+
+- In this stage, we should be able to access postgres in docker. Check the connection string, we will need this in the next stage. Can use Postico to visualize the database, also to copy connection string easily.
+
+3. Run migration following https://github.com/golang-migrate/migrate. We run migration using the cli command, 
+```docker run -v {{ migration absolute dir }}:/migrations --network host migrate/migrate -path=/migrations/ -database {{ connection string. ex: postgres://localhost:5432/database }} up 2```
+
+```docker run -v /Users/sarah/go/cat/migrations:/migrations --network host migrate/migrate -path=/migrations/ -database "postgresql://postgres:postgres123@0.0.0.0:7557/cat?sslmode=disable" up```
+
+4. Run Golang api, then test if works correctly
+```go run .```
+
+
+
+

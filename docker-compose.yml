@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  postgres:
+    build: .
+    ports:
+      - 7557:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+      - PGDATA=/pgdata
+      - POSTGRES_DB=cat
+    volumes:
+      - database_dockerizing:/var/lib/postgresql/data
+
+volumes:
+  database_dockerizing:
