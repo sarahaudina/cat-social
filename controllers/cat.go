@@ -57,8 +57,8 @@ func (m *CatController) CreateCat(c *gin.Context) {
 	insert := repo_cat.InsertCat(cat)
 
 	if insert {
-		c.JSON(200, gin.H{"status": "success", "msg": "insert manga successfully"})
+		c.JSON(200, gin.H{"status": "success", "msg": "Insert cat successfully"})
 	} else {
-		c.JSON(500, gin.H{"status": "failed", "msg": "insert manga failed"})
+		c.JSON(500, gin.H{"status": "failed", "msg": "Insert cat failed"})
 	}
 }

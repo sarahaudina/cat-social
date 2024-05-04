@@ -16,6 +16,14 @@ In this stage, a few things to pay attention to:
 4. Run Golang api, then test if works correctly
 ```go run .```
 
+B. Requirements
+- Go Version 1.22.2
+
+C. Other Resources
+1. How to implement authorization with Golang & Gin. https://ututuv.medium.com/building-user-authentication-and-authorisation-api-in-go-using-gin-and-gorm-93dfe38e0612
+
+
+
 
 
 
